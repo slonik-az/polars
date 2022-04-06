@@ -1,0 +1,83 @@
+|> Polars notes
+
+Links   {{{
+* https://github.com/pola-rs/polars - main repo
+
+}}}
+
+#1> HOWTO build  {{{1
+#2> HOWTO build python polars   {{{2
+#3> Building using Makefile (most straightforward option)   {{{3
+(0.0) Full cleanup
+    > make CLEAN-repo
+
+(0.1) Change into 'py-polars'
+    > cd py-polars
+
+(*) Build and test debug version in a virtual environment   {{{
+
+(2) Make virtual environment
+    > script make-.venv.log  make .venv
+
+(3) build debug version of polars wheel in the .venv
+    > script make-build.log  make build
+
+(4) install polars debug version onto the ./venv
+    > script make-install.log  make install
+
+(5) Test in .venv
+    > script make-test.log  make test
+
+}}}
+
+(*) Build and install release version   {{{
+(1) Build release version (takes 25 minutes)
+    > script make-build-release.log  time make build-release
+
+}}}
+
+}}}3
+#3> Building without Makefile   {{{3
+(0) Proper python conda environment
+  > mamba-act e310
+
+(1) cleanup and change dir
+  * Nuclear option
+  > git clean -dx -f
+
+  * OR gentle one
+  > cargo clean
+  > cd py-polars
+  > cargo clean
+
+(2) Build py-polars in one of several ways
+  > cd py-polars
+  * Fastest release build (build time can be slow)
+  > script maturin.log  maturin develop --rustc-extra-args="-C target-cpu=native" --release
+  OR
+  * Fast release build (somewhat shorter build time):
+  > script maturin.log  maturin develop --rustc-extra-args="-C codegen-units=16 -C lto=thin -C target-cpu=native" --release
+  OR
+  * debug build (builds fast, runs slow)
+  > script maturin.log  maturin develop
+}}}3
+}}}2
+#2> HOWTO build rust polars   {{{2
+
+}}}2
+
+}}}1
+
+How to test   {{{
+
+* Running python tests:
+  > cd py-polars
+  > script test.log  pytest -v tests
+
+* Running rust tests
+  > RUST_BACKTRACE=1 script make-test.log  make test
+
+}}}
+
+#############################################################
+## vim:tw=105:ft=text:fdm=marker:fdl=0:spell:ts=2:sts=2:sw=2:
