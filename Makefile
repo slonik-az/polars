@@ -1,3 +1,7 @@
+SHELL=/bin/bash
+
+help:
+	@echo "TODO: write Makefile help message"
 
 changelog-python:
 	docker run -it --env-file .env --rm -v "$(pwd)":/usr/local/src/your-app githubchangeloggenerator/github-changelog-generator -u pola-rs -p polars --exclude-labels rust
@@ -21,3 +25,7 @@ coverage:
 		$(MAKE) -C py-polars test-with-cov; \
 		cargo llvm-cov --no-run --lcov --output-path coverage.lcov; \
 		"
+
+.PHONY: CLEAN-repo
+CLEAN-repo: # removes all untracked files in the entire repo
+	git clean -dx -f

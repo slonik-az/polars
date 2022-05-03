@@ -12,10 +12,10 @@ polars/vendor
 *.so
 .ENV
 .env
+.venv/
 AUTO_CHANGELOG.md
 node_modules/
 .coverage
-venv/
 *.iml
 coverage.lcov
 coverage.xml

@@ -8,7 +8,8 @@ pyarrow
 pandas
 
 # Tooling
-maturin==0.12.1
+maturin>=0.12.1
+# maturin==0.12.12
 pytest==6.2.5
 pytest-cov[toml]==3.0.0
 black==21.6b0
@@ -37,3 +38,6 @@ pandas-stubs==1.2.0.39
 # pinned third rate deps
 # to be removed later
 click==8.0.4
+
+# Optional packages
+ipython
