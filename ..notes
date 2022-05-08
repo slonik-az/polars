@@ -31,8 +31,12 @@ Links   {{{
 }}}
 
 (*) Build and install release version   {{{
+
 (1) Build release version (takes 25 minutes)
     > script make-build-release.log  time make build-release
+
+(2) Install release version in the current !>cargo environment<! (not in .venv)
+    > script make-install-release.log  make VENV='' install-release
 
 }}}
 
