@@ -29,7 +29,7 @@ VENV_ACT     = $(CONDA_DEACT) $(VENV)
 VENV_ACT_BIN = $(VENV_ACT) $(VENV_BIN)
 
 ifeq ($(VENV),$(THIS_VENV))
-VENV_BIN := $(realpath .venv/bin)/
+VENV_BIN := $(abspath .venv/bin)/
 .venv:
 	python -m venv  .venv
 	$(VENV_ACT_BIN)pip install -U pip
